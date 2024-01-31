@@ -1,0 +1,157 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'base-7'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=base-7",
+                    "--package=base-7"
+                ],
+                "filter": {
+                    "name": "base-7",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'base-7'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=base-7",
+                    "--package=base-7"
+                ],
+                "filter": {
+                    "name": "base-7",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'plates-between-candles'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=plates-between-candles",
+                    "--package=plates-between-candles"
+                ],
+                "filter": {
+                    "name": "plates-between-candles",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'plates-between-candles'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=plates-between-candles",
+                    "--package=plates-between-candles"
+                ],
+                "filter": {
+                    "name": "plates-between-candles",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'best_rotation'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=best_rotation",
+                    "--package=best_rotation"
+                ],
+                "filter": {
+                    "name": "best_rotation",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'best_rotation'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=best_rotation",
+                    "--package=best_rotation"
+                ],
+                "filter": {
+                    "name": "best_rotation",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'search'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=search",
+                    "--package=search"
+                ],
+                "filter": {
+                    "name": "search",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'search'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=search",
+                    "--package=search"
+                ],
+                "filter": {
+                    "name": "search",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

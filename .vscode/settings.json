@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./min_path_cost/Cargo.toml"
+    ]
+}
