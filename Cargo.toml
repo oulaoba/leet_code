@@ -66,5 +66,6 @@ members = [
     "trie",
     "max_number_of_alloys",
     "a_contest",
+    "nums_game",
 ]
-default-members = ["a_contest"]
+default-members = ["nums_game"]

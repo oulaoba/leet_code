@@ -174,28 +174,3 @@ fn minimum_seconds_test4() {
     let ans = minimum_seconds(nums);
     assert_eq!(ans, 1)
 }
-
-pub fn distinct_difference_array(nums: Vec<i32>) -> Vec<i32> {
-    let n = nums.len();
-    let mut set = std::collections::HashSet::new();
-
-    let mut ans = vec![0; n + 1];
-    for (i, &v) in nums.iter().enumerate().rev() {
-        set.insert(v);
-        ans[i] = set.len() as i32;
-    }
-    set.clear();
-    for (i, &v) in nums.iter().enumerate() {
-        set.insert(v);
-        ans[i] = set.len() as i32 - ans[i + 1];
-    }
-    ans.pop();
-    ans
-}
-
-#[test]
-fn distinct_test1() {
-    let nums = vec![3, 2, 3, 4, 2];
-    let result = vec![-2, -1, 0, 2, 3];
-    assert_eq!(distinct_difference_array(nums), result);
-}

@@ -274,6 +274,10 @@ name = "num_prime_arrangements"
 version = "0.1.0"
 
 [[package]]
+name = "nums_game"
+version = "0.1.0"
+
+[[package]]
 name = "peak_index_in_mountain_array"
 version = "0.1.0"
 
