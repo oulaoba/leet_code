@@ -373,6 +373,10 @@ name = "second_greater_element"
 version = "0.1.0"
 
 [[package]]
+name = "stone_game_vi"
+version = "0.1.0"
+
+[[package]]
 name = "sum_subarray_mins"
 version = "0.1.0"
 

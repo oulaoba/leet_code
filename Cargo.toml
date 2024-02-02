@@ -67,5 +67,6 @@ members = [
     "max_number_of_alloys",
     "a_contest",
     "nums_game",
+    "stone_game_vi",
 ]
-default-members = ["nums_game"]
+default-members = ["stone_game_vi"]
