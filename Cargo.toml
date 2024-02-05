@@ -68,5 +68,6 @@ members = [
     "a_contest",
     "nums_game",
     "stone_game_vi",
+    "contest383",
 ]
 default-members = ["stone_game_vi"]

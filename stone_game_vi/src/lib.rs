@@ -31,7 +31,7 @@ pub fn stone_game_vi(alice_values: Vec<i32>, bob_values: Vec<i32>) -> i32 {
     alice.signum()
 }
 
-/// Maybe on the wrong way 
+/// Maybe on the wrong way
 pub fn stone_game_vi1(alice_values: Vec<i32>, bob_values: Vec<i32>) -> i32 {
     let mut alice_dic = vec![std::collections::HashSet::new(); 101];
     let mut bob_dic = vec![std::collections::HashSet::new(); 101];
@@ -151,5 +151,54 @@ mod test {
         ];
         let result = stone_game_vi(alice_values, bob_values);
         assert_eq!(result, 1)
+    }
+}
+
+/*
+1690. 石子游戏 VII
+石子游戏中，爱丽丝和鲍勃轮流进行自己的回合，爱丽丝先开始 。
+
+有 n 块石子排成一排。每个玩家的回合中，可以从行中 移除 最左边的石头或最右边的石头，并获得与该行中剩余石头值之 和 相等的得分。当没有石头可移除时，得分较高者获胜。
+
+鲍勃发现他总是输掉游戏（可怜的鲍勃，他总是输），所以他决定尽力 减小得分的差值 。爱丽丝的目标是最大限度地 扩大得分的差值 。
+
+给你一个整数数组 stones ，其中 stones[i] 表示 从左边开始 的第 i 个石头的值，如果爱丽丝和鲍勃都 发挥出最佳水平 ，请返回他们 得分的差值 。
+*/
+
+pub fn stone_game_vii(stones: Vec<i32>) -> i32 {
+    let n = stones.len();
+    let mut dic = vec![0; n + 1];
+    for i in 0..n {
+        dic[i + 1] = dic[i] + stones[i];
+    }
+
+    let mut memo = vec![vec![0; n]; n];
+
+    fn dfs(i: usize, j: usize, s: &Vec<i32>, memo: &mut Vec<Vec<i32>>) -> i32 {
+        if i == j {
+            // 递归边界
+            return 0;
+        }
+        if memo[i][j] != 0 {
+            return memo[i][j];
+        }
+        let res1 = s[j + 1] - s[i + 1] - dfs(i + 1, j, s, memo);
+        let res2 = s[j] - s[i] - dfs(i, j - 1, s, memo);
+        let a = res1.max(res2);
+        memo[i][j] = a;
+        a
+    }
+    dfs(0, n - 1, &dic, &mut memo)
+}
+
+#[cfg(test)]
+mod stone_game_vii_test {
+    use super::*;
+
+    #[test]
+    fn it_works1() {
+        let stones = vec![5, 3, 1, 4, 2];
+        let ans = stone_game_vii(stones);
+        assert_eq!(ans, 6);
     }
 }
