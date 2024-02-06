@@ -69,5 +69,7 @@ members = [
     "nums_game",
     "stone_game_vi",
     "contest383",
+    "max_result_1696",
+    "magic_tower_lcp_30",
 ]
 default-members = ["stone_game_vi"]
