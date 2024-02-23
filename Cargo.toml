@@ -43,7 +43,7 @@ members = [
     "bst_to_gst",
     "majority_element",
     "minimum_fuel_cost",
-    "minimum_moves",                # 未通过
+    "minimum_moves",                  # 未通过
     "max_depth",
     "minimum_total_price",
     "min_reorder",
@@ -57,7 +57,7 @@ members = [
     "second_greater_element",
     "make_smallest_palindrome",
     "possible_to_stamp",
-    "CountIntervals",               # 存疑
+    "CountIntervals",                 # 存疑
     "maximum_sum_of_heights",
     "daily_temperatures",
     "msai_interview",
@@ -71,5 +71,6 @@ members = [
     "contest383",
     "max_result_1696",
     "magic_tower_lcp_30",
+    "replace_value_in_tree_20240207",
 ]
 default-members = ["stone_game_vi"]
