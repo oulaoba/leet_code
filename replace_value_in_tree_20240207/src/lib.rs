@@ -17,7 +17,6 @@ impl TreeNode {
     }
 }
 
-use std::borrow::Borrow;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::rc::Rc;
@@ -195,4 +194,70 @@ pub fn kth_largest_level_sum(root: Option<Rc<RefCell<TreeNode>>>, k: i32) -> i64
         dic.sort_unstable();
         dic[dic.len() - k as usize]
     }
+}
+
+pub fn closest_nodes(root: Option<Rc<RefCell<TreeNode>>>, queries: Vec<i32>) -> Vec<Vec<i32>> {
+    let mut array = vec![];
+    let mut current = vec![root.unwrap()];
+    while !current.is_empty() {
+        let mut next = vec![];
+        for node in current {
+            let mut x = node.borrow_mut();
+            array.push(x.val);
+            if let Some(left) = x.left.take() {
+                next.push(left);
+            }
+            if let Some(right) = x.right.take() {
+                next.push(right);
+            }
+        }
+        current = next;
+    }
+    let mut ans = vec![];
+
+    array.sort_unstable();
+    array.dedup();
+    for q in queries {
+        let index = array.binary_search(&q);
+        match index {
+            Ok(index) => ans.push(vec![array[index], array[index]]),
+            Err(index) => {
+                let min = if index == 0 { -1 } else { array[index - 1] };
+                let max = if index == array.len() {
+                    -1
+                } else {
+                    array[index]
+                };
+                ans.push(vec![min, max])
+            }
+        }
+    }
+    ans
+}
+
+pub fn lowest_common_ancestor(
+    root: Option<Rc<RefCell<TreeNode>>>,
+    p: Option<Rc<RefCell<TreeNode>>>,
+    q: Option<Rc<RefCell<TreeNode>>>,
+) -> Option<Rc<RefCell<TreeNode>>> {
+    let p = p.unwrap().as_ref().borrow().val;
+    let q = q.unwrap().as_ref().borrow().val;
+    let mut current = vec![root];
+    while !current.is_empty() {
+        let mut next = vec![];
+        for node in current {
+            let mut x = node.as_ref().unwrap().borrow_mut();
+            println!("{}", x.val);
+            if (x.val == p || x.val == q) || (x.val > p && x.val < q) {
+                break;
+            }
+            if x.val < p {
+                next.push(x.right.take());
+            } else {
+                next.push(x.left.take());
+            }
+        }
+        current = next;
+    }
+    current[0].take()
 }

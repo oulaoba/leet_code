@@ -74,16 +74,107 @@ pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     dfs(root.as_ref())
 }
 
+pub fn lowest_common_ancestor(
+    mut root: Option<Rc<RefCell<TreeNode>>>,
+    p: Option<Rc<RefCell<TreeNode>>>,
+    q: Option<Rc<RefCell<TreeNode>>>,
+) -> Option<Rc<RefCell<TreeNode>>> {
+    let p = p.unwrap().as_ref().borrow().val;
+    let q = q.unwrap().as_ref().borrow().val;
+    loop {
+        let x = root.as_ref().unwrap().borrow().val;
+        if x > p && x > q {
+            // 都在左边
+            root = root.unwrap().borrow_mut().left.take();
+        } else if x < p && x < q {
+            // 都在右边
+            root = root.unwrap().borrow_mut().right.take();
+        } else {
+            break;
+        }
+    }
+    root
+}
+
+pub fn lowest_common_ancestor2(
+    root: Option<Rc<RefCell<TreeNode>>>,
+    p: Option<Rc<RefCell<TreeNode>>>,
+    q: Option<Rc<RefCell<TreeNode>>>,
+) -> Option<Rc<RefCell<TreeNode>>> {
+    let p = p.unwrap().as_ref().borrow().val;
+    let q = q.unwrap().as_ref().borrow().val;
+    let mut current = vec![root];
+    'outer: while !current.is_empty() {
+        let mut next = vec![];
+        for i in 0..current.len() {
+            let mut x = current[i].as_ref().unwrap().borrow_mut();
+            if x.val > p && x.val > q {
+                // 都在左边
+                next.push(x.left.take());
+            } else if x.val < p && x.val < q {
+                // 都在右边
+                next.push(x.right.take());
+            } else {
+                break 'outer;
+            }
+        }
+        current = next;
+    }
+    current[0].take()
+}
+
+pub fn range_sum_bst(root: Option<Rc<RefCell<TreeNode>>>, low: i32, high: i32) -> i32 {
+    if let Some(node) = root {
+        let mut node = node.borrow_mut();
+        let x = node.val;
+        // 分类讨论
+        if x > high {
+            // 右子树全都不在 [low,high]
+            x + range_sum_bst(node.left.take(), low, high)
+        } else if x < low {
+            // 左子树全都不在 [low,high]
+            x + range_sum_bst(node.right.take(), low, high)
+        } else {
+            x + range_sum_bst(node.right.take(), low, high)
+                + range_sum_bst(node.left.take(), low, high)
+        }
+    } else {
+        0
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-        let init = vec![Some(3), Some(9), Some(20), None, None, Some(15), Some(7)];
+    fn it_works2() {
+        let init = vec![Some(2), Some(1), Some(3)];
         let tree = to_tree(init);
-        let ans = max_depth2(tree);
-        assert_eq!(3, ans);
+        let p = Some(Rc::new(RefCell::new(TreeNode::new(3))));
+        let q = Some(Rc::new(RefCell::new(TreeNode::new(1))));
+        let ans = lowest_common_ancestor(tree, p, q);
+    }
+
+    #[test]
+    fn it_works() {
+        let init = vec![
+            Some(6),
+            Some(2),
+            Some(8),
+            Some(0),
+            Some(4),
+            Some(7),
+            Some(9),
+            None,
+            None,
+            Some(3),
+            Some(5),
+        ];
+        let tree = to_tree(init);
+        let p = Some(Rc::new(RefCell::new(TreeNode::new(2))));
+        let q = Some(Rc::new(RefCell::new(TreeNode::new(8))));
+        let ans = lowest_common_ancestor(tree, p, q);
     }
 }
 
