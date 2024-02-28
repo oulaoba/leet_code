@@ -72,5 +72,6 @@ members = [
     "max_result_1696",
     "magic_tower_lcp_30",
     "replace_value_in_tree_20240207",
+    "min_increments",
 ]
 default-members = ["stone_game_vi"]

@@ -271,3 +271,37 @@ fn sign_test2() {
     let ans = order_of_largest_plus_sign(5, mines);
     assert_eq!(ans, 1)
 }
+
+pub fn count_primes(n: i32) -> i32 {
+    let n = n as usize;
+    let mut is_primes = vec![true; n];
+    let mut primes = std::collections::HashSet::new();
+    for i in 2..n {
+        if is_primes[i] {
+            primes.insert(i);
+            let mut x = 2;
+            while i * x < n {
+                is_primes[i * x] = false;
+                x += 1;
+            }
+        }
+    }
+    primes.len() as i32
+}
+
+pub fn count_paths(n: i32, edges: Vec<Vec<i32>>) -> i64 {
+    let n = n as usize;
+    let mut is_primes = vec![true; n];
+    let mut primes = std::collections::HashSet::new();
+    for i in 2..n {
+        if is_primes[i] {
+            primes.insert(i);
+            let mut x = 2;
+            while i * x < n {
+                is_primes[i * x] = false;
+                x += 1;
+            }
+        }
+    }
+    1
+}
