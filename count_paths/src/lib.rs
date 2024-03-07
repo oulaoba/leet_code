@@ -9,42 +9,42 @@
 
 // 请返回花费 最少时间 到达目的地的 路径数目 。由于答案可能很大，将结果对 109 + 7 取余 后返回。
 
-    pub fn count_paths(n: i32, roads: Vec<Vec<i32>>) -> i32 {
-        let e97 = 1_000_000_007;
-        let n = n as usize;
-        let mut dic = vec![vec![i64::MAX / 2; n]; n];
-        for r in roads {
-            let (x, y, c) = (r[0] as usize, r[1] as usize, r[2] as i64);
-            dic[x][y] = c;
-            dic[y][x] = c;
+pub fn count_paths(n: i32, roads: Vec<Vec<i32>>) -> i32 {
+    let e97 = 1_000_000_007;
+    let n = n as usize;
+    let mut dic = vec![vec![i64::MAX / 2; n]; n];
+    for r in roads {
+        let (x, y, c) = (r[0] as usize, r[1] as usize, r[2] as i64);
+        dic[x][y] = c;
+        dic[y][x] = c;
+    }
+    let mut dis = vec![i64::MAX / 2; n];
+    dis[0] = 0;
+    let mut f = vec![0; n];
+    f[0] = 1;
+    let mut done = vec![false; n];
+    loop {
+        let mut x = n;
+        for (i, &ok) in done.iter().enumerate() {
+            if !ok && (x == n || dis[i] < dis[x]) {
+                x = i;
+            }
         }
-        let mut dis = vec![i64::MAX / 2; n];
-        dis[0] = 0;
-        let mut f = vec![0; n];
-        f[0] = 1;
-        let mut done = vec![false; n];
-        loop {
-            let mut x = n;
-            for (i, &ok) in done.iter().enumerate() {
-                if !ok && (x == n || dis[i] < dis[x]) {
-                    x = i;
-                }
-            }
-            if x == n - 1 {
-                return f[n - 1];
-            }
-            done[x] = true;
-            for (y, &d) in dic[x].iter().enumerate() {
-                let new_dis = dis[x] + d;
-                if new_dis < dis[y] {
-                    dis[y] = new_dis;
-                    f[y] = f[x];
-                } else if new_dis == dis[y] {
-                    f[y] = (f[y] + f[x]) % e97;
-                }
+        if x == n - 1 {
+            return f[n - 1];
+        }
+        done[x] = true;
+        for (y, &d) in dic[x].iter().enumerate() {
+            let new_dis = dis[x] + d;
+            if new_dis < dis[y] {
+                dis[y] = new_dis;
+                f[y] = f[x];
+            } else if new_dis == dis[y] {
+                f[y] = (f[y] + f[x]) % e97;
             }
         }
     }
+}
 
 #[cfg(test)]
 mod tests {
@@ -67,4 +67,30 @@ mod tests {
         let result = count_paths(7, roads);
         assert_eq!(result, 4);
     }
+}
+
+pub fn find_k_or(nums: Vec<i32>, k: i32) -> i32 {
+    let mut ans = 0;
+    for i in 0..31 {
+        let cnt1 = nums.iter().map(|&m| m >> i & 1).sum::<i32>();
+        if cnt1 >= k {
+            ans |= 1 << i;
+        }
+    }
+    ans
+}
+
+pub fn divisibility_array(word: String, m: i32) -> Vec<i32> {
+    let mut ans = vec![0; word.len()];
+    let m = m as i64;
+    let mut temp = 0;
+    for (i, c) in word.chars().enumerate() {
+        temp = temp * 10 + (c as i64 - '0' as i64);
+        if temp % m == 0 {
+            ans[i] = 1;
+        }
+        temp %= m;
+    }
+
+    ans
 }
