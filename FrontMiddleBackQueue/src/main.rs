@@ -1,7 +1,3 @@
-fn main() {
-    println!("FrontMiddleBackQueue");
-}
-
 use std::collections::VecDeque;
 struct FrontMiddleBackQueue {
     left: VecDeque<i32>,

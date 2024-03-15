@@ -1,7 +1,3 @@
-fn main() {
-    println!("num_prime_arrangements");
-}
-
 pub fn num_prime_arrangements(n: i32) -> i32 {
     const MOD: i128 = 1000000007;
     pub fn factorial(n: i32) -> i128 {

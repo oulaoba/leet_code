@@ -1,6 +1,3 @@
-fn main() {
-    println!("entity_parser");
-}
 
 pub fn entity_parser(text: String) -> String {
     let mut map = std::collections::hash_map::HashMap::new();

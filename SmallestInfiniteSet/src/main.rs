@@ -1,6 +1,4 @@
-fn main() {
-    println!("Hello, world!");
-}
+
 
 struct SmallestInfiniteSet {
     values: Vec<i32>,

@@ -1,19 +1,3 @@
-fn main() {
-    println!("pseudo_palindromic_paths");
-    let b_int = 0b_0001001;
-    println!("b_int:{}", b_int);
-
-    let mut set = std::collections::HashSet::new();
-    println!("set.len():{}", set.len());
-    println!("set.insert(0):{}", set.insert(0));
-    println!("set.insert(0):{}", set.insert(0));
-    println!("set.remove(&0):{}", set.remove(&0));
-
-    println!("set.len():{}", set.len());
-    println!("set.insert(1):{}", set.insert(1));
-    println!("set.len():{}", set.len());
-}
-
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {

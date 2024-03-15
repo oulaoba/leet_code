@@ -1,7 +1,3 @@
-fn main() {
-    println!("min_deletion");
-}
-
 pub fn min_deletion(nums: Vec<i32>) -> i32 {
     let mut ans = 0;
     let n = nums.iter().count();

@@ -1,8 +1,5 @@
 use std::collections::VecDeque;
 
-fn main() {
-    println!("sum_subarray_mins");
-}
 pub fn sum_subarray_mins(arr: Vec<i32>) -> i32 {
     const MOD: i64 = 1_000_000_007;
     let n = arr.len();
