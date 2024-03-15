@@ -179,6 +179,10 @@ name = "make_smallest_palindrome"
 version = "0.1.0"
 
 [[package]]
+name = "max_array_value"
+version = "0.1.0"
+
+[[package]]
 name = "max_depth"
 version = "0.1.0"
 

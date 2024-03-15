@@ -94,3 +94,63 @@ pub fn divisibility_array(word: String, m: i32) -> Vec<i32> {
 
     ans
 }
+
+pub fn minimum_possible_sum(n: i32, target: i32) -> i32 {
+    let e97 = 1_000_000_007;
+    let mut ans = 0;
+    let min = (target / 2).min(n);
+    ans += min * (min + 1) / 2;
+    ans %= e97;
+    if n > min {
+        let leave = n - min;
+        ans += leave * (min + 1 + min + leave) / 2;
+    }
+    ans % e97
+}
+
+pub fn minimum_possible_sum1(n: i32, target: i32) -> i32 {
+    let e97 = 1_000_000_007;
+    let mut dic = std::collections::HashSet::new();
+    let mut i = 1;
+    let mut ans = 0;
+    while dic.len() < n as usize {
+        if dic.get(&(target - i)).is_none() {
+            dic.insert(i);
+            ans += i;
+            ans %= e97;
+        }
+        i += 1
+    }
+    ans
+}
+
+pub fn capitalize_title(title: String) -> String {
+    let title: Vec<&str> = title.split(' ').collect();
+    let mut ans = String::new();
+    for temp in title {
+        let mut temp = temp.to_lowercase();
+        if temp.len() > 2 {
+            temp = format!(
+                "{}{}",
+                temp.chars().next().unwrap().to_uppercase(),
+                temp[1..].to_lowercase()
+            );
+        }
+        ans = format!("{} {}", ans, temp);
+    }
+    ans.trim().to_string()
+}
+
+pub fn maximum_odd_binary_number(s: String) -> String {
+    let mut ans = vec![];
+    let cnt = s.chars().filter(|f| f == &'1').count();
+    if cnt > 1 {
+        ans = vec!['1'; cnt - 1];
+        let zero = vec!['0'; s.len() - cnt - 1];
+        ans.extend(zero);
+    } else {
+        ans = vec!['0'; s.len() - 1];
+    }
+    ans.push('1');
+    ans.iter().collect()
+}

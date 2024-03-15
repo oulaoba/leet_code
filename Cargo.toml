@@ -76,5 +76,6 @@ members = [
     "valid_partition",
     "reachable_nodes",
     "count_paths",
+    "max_array_value",
 ]
 default-members = ["valid_partition"]
