@@ -1,5 +1,6 @@
 {
-    "rust-analyzer.linkedProjects": [
-        "./min_path_cost/Cargo.toml"
-    ]
+	"rust-analyzer.linkedProjects": [
+		"./min_path_cost/Cargo.toml",
+		"./merge_two_lists/Cargo.toml"
+	]
 }
